@@ -9,7 +9,7 @@ namespace RobotCleaner
         {
             
             RobotMovements robot = new RobotMovements();
-            robot.ProcessData(fileName);
+            var cleaned = robot.ProcessData(fileName);
 
 
 
@@ -17,6 +17,9 @@ namespace RobotCleaner
             var date2 = DateTime.Now;
             Console.WriteLine($"timp: { DateTime.Now - date2}");
 
+
+            Console.WriteLine($"Cleaned: {cleaned}");
+ 
             Console.ReadLine();
         }
     }

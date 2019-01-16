@@ -14,12 +14,7 @@ namespace RobotCleaner
         private Mathematics math = new Mathematics();
 
 
-        public void InitList(int a, int b)
-        {
-            elX.Add(a);
-            elY.Add(b);
-
-        }
+        #region Process Data
 
         public int ProcessData(int commands, int[] startingPosition, string[] alllines)
         {
@@ -31,7 +26,6 @@ namespace RobotCleaner
             commandArrays[0] = startingPosition.Concat(startingPosition).ToArray();
 
 
-            str.AppendLine(string.Join(",", startingPosition));
 
             var total = 1; //Initialize with 1 from the first place cleaned
 
@@ -48,7 +42,6 @@ namespace RobotCleaner
             }
 
 
-
             for (int i = 0; i < commands; i++)
             {
                 for (int j = i + 1; j < commands + 1; j++)
@@ -56,41 +49,32 @@ namespace RobotCleaner
                     var rezultat = math.Union(commandArrays[i], commandArrays[j]);
                     if (rezultat != 0)
                     {
-
-                        Console.WriteLine($" I {i} j {j} to {rezultat}");
                         intersections += rezultat;
                     }
                 }
             }
 
-            Console.WriteLine($"Totals:{total } intersections:{intersections} Cleaned: {total - intersections}");
-            File.WriteAllText(@"f:\MyNewTextFile.txt", str.ToString());
-
             return total - intersections;
         }
-
-
-
-
-        public void ProcessData(string fileName)
+        public int ProcessData(string fileName)
         {
             var alllines = File.ReadAllLines(fileName);
             int.TryParse(alllines[0], out int commands);
             var startingPosition = Array.ConvertAll<string, int>(alllines[1].Split(" "), int.Parse);
 
-            ProcessData(commands, startingPosition, alllines);
+            return ProcessData(commands, startingPosition, alllines);
+        } 
+        #endregion
+
+
+        #region Private methods
+
+        private void InitList(int a, int b)
+        {
+            elX.Add(a);
+            elY.Add(b);
+
         }
-
-
-
-
-
-
-
-
-
-
-
         private int[] FillLists(int[] from, string direction)
         {
             int toX = from[2];
@@ -124,6 +108,7 @@ namespace RobotCleaner
             return new int[] { startX, startY, toX, toY };
         }
 
+        #endregion
 
 
     }

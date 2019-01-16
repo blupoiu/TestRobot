@@ -9,6 +9,7 @@ namespace RobotCleaner
     public class Mathematics
     {
 
+        #region Public methods
         /// <summary>
         /// checks the movemnt of the line
         /// </summary>
@@ -25,7 +26,12 @@ namespace RobotCleaner
             return false;
         }
 
-
+        /// <summary>
+        ///  Returns the number of cells common to two segment
+        /// </summary>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns></returns>
         public int Union(int[] from, int[] to)
         {
             bool isVFrom = IsV(from);
@@ -47,7 +53,32 @@ namespace RobotCleaner
             return result;
         }
 
+        /// <summary>
+        ///  Returns the number of cells common to two segments
+        /// </summary>
+        /// <param name="xS"></param>
+        /// <param name="xE"></param>
+        /// <param name="yS"></param>
+        /// <param name="yE"></param>
+        /// <returns></returns>
+        public int Intersection(int xS, int xE, int yS, int yE)
+        {
+            Change(ref xS, ref xE);
+            Change(ref yS, ref yE);
 
+            if ((yS > xE) || (xS > yE))
+            {
+                return 0;
+            }
+
+            int r1 = xS > yS ? xS : yS;
+            int r2 = xE < yE ? xE : yE;
+            return Math.Abs(r2 - r1) + 1;
+        }
+
+        #endregion
+
+        #region Unions
         //x1 = a[0] y1= a[1] x2=a[3] y2=a[4]  
         //x3 = b[0] y3 =b1   x4=b[3] y4=b[4]
 
@@ -90,23 +121,9 @@ namespace RobotCleaner
 
             return Intersection(a[0], a[2], b[0], b[2]);
         }
-
-
-        public int Intersection(int xS, int xE, int yS, int yE)
-        {
-            Change(ref xS, ref xE);
-            Change(ref yS, ref yE);
-
-            if ((yS > xE) || (xS > yE))
-            {
-                return 0;
-            }
-
-            int r1 = xS > yS ? xS : yS;
-            int r2 = xE < yE ? xE : yE;
-            return Math.Abs(r2 - r1) + 1;
-        }
-
+        #endregion
+        
+        #region Private methods
         private void Change(ref int a, ref int b)
         {
             int c = 0;
@@ -117,10 +134,10 @@ namespace RobotCleaner
                 b = c;
             }
         }
-
         public bool IsWithin(int value, int a, int b)
         {
             return (value >= a && value <= b) || (value <= a && value >= b);
-        }
+        } 
+        #endregion
     }
 }
