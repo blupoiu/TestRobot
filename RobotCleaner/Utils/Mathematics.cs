@@ -89,7 +89,7 @@ namespace RobotCleaner
         /// <param name="b"></param>
         /// <param name="isVFrom"></param>
         /// <returns></returns>
-        private int UnionVH(int[] a, int[] b, bool isVFrom)
+        public int UnionVH(int[] a, int[] b, bool isVFrom)
         {
             if (isVFrom)
             {
@@ -105,7 +105,7 @@ namespace RobotCleaner
             }
         }
 
-        private int UnionVV(int[] a, int[] b)
+        public int UnionVV(int[] a, int[] b)
         {
             if (a[0] != b[0])
                 return 0;
@@ -114,7 +114,7 @@ namespace RobotCleaner
 
         }
 
-        private int UnionHH(int[] a, int[] b)
+        public int UnionHH(int[] a, int[] b)
         {
             if (a[1] != b[1])
                 return 0;

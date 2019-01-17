@@ -6,11 +6,11 @@ namespace ProcessDataTests
     [TestFixture]
     class RobotMovementsTests
     {
-        private RobotMovements process;
+        private RobotMovementsNoBF process;
 
         public RobotMovementsTests()
         {
-            process = new RobotMovements();
+            process = new RobotMovementsNoBF();
         }
 
 
