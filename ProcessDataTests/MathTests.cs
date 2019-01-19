@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using RobotCleaner;
+using RobotCleaner.Utils;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -4,13 +4,13 @@ namespace RobotCleaner
 {
     class Program
     {
-        static string fileName = @"f:\Test4.txt";
+        static string fileName = @"C:\personal\TestRobot-master\TestRobot-master\RobotCleaner\Tests\Test2.txt";
         static void Main(string[] args)
         {
             var date2 = DateTime.Now;
 
 
-            RobotMovementsNoBF robot = new RobotMovementsNoBF();
+            var robot = new RobotMovements();
             var cleaned = robot.ProcessData(fileName);
 
 
