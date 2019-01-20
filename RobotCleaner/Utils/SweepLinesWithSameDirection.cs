@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RobotCleaner.Utils
 {
-    public class SweepLine
+    public class SweepLinesWithSameDirection
     {
         static int Compare1(KeyValuePair<int, bool> a, KeyValuePair<int, bool> b)
         {
@@ -22,7 +19,7 @@ namespace RobotCleaner.Utils
             return a > b ? a : b;
         }
 
-        public int GetUniqueH(int[][] segments)
+        public int GetUniqueHorizontalCells(int[][] segments)
         {
             var n = segments.Count();
             int firstY = segments[0][1];
@@ -34,7 +31,7 @@ namespace RobotCleaner.Utils
                 //we have to sweep for elements of the same y
                 if (segments[i][1] != firstY)
                 {
-                    result += IntersectionsH(myList);
+                    result += IntersectionBetweenSegments(myList);
                     myList = new List<KeyValuePair<int, bool>>();
                     firstY = segments[i][1];
                 }
@@ -42,12 +39,10 @@ namespace RobotCleaner.Utils
                 myList.Add(new KeyValuePair<int, bool>(Min(segments[i][0], segments[i][2]), false));
                 myList.Add(new KeyValuePair<int, bool>(Max(segments[i][0], segments[i][2]), true));
             }
-            result += IntersectionsH(myList);
+            result += IntersectionBetweenSegments(myList);
             return result;
         }
-
-
-        public int GetUniqueV(int[][] segments)
+        public int GetUniqueVerticalCells(int[][] segments)
         {
             var n = segments.Count();
             int firstX = segments[0][0];
@@ -59,7 +54,7 @@ namespace RobotCleaner.Utils
                 //we have to sweep for elements of the same y
                 if (segments[i][0] != firstX)
                 {
-                    result += IntersectionsH(myList);
+                    result += IntersectionBetweenSegments(myList);
                     myList = new List<KeyValuePair<int, bool>>();
                     firstX = segments[i][0];
                 }
@@ -67,30 +62,14 @@ namespace RobotCleaner.Utils
                 myList.Add(new KeyValuePair<int, bool>(Min(segments[i][1], segments[i][3]), false));
                 myList.Add(new KeyValuePair<int, bool>(Max(segments[i][1], segments[i][3]), true));
             }
-            result += IntersectionsH(myList);
+            result += IntersectionBetweenSegments(myList);
             return result;
         }
+  
 
-
-        public int GetUniqueVH(int[][] segments)
+        private int IntersectionBetweenSegments(List<KeyValuePair<int, bool>> myList)
         {
-            int result = 0;
-            var n = segments.Count();
-            for (int i = 0; i < n; i++)
-            {
-
-
-
-            }
-
-            return result;
-        }
-
-
-
-        private int IntersectionsH(List<KeyValuePair<int, bool>> myList)
-        {
-            int result = 0; // Initialize result 
+            int result = 0;  
             myList.Sort(Compare1);
             int counter = 0;
 

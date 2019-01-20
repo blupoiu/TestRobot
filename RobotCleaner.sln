@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotCleaner", "RobotCleaner\RobotCleaner.csproj", "{9D7F59EE-67DB-47B8-8B59-05F4F91AD76D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobotCleaner", "RobotCleaner\RobotCleaner.csproj", "{9D7F59EE-67DB-47B8-8B59-05F4F91AD76D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessDataTests", "ProcessDataTests\ProcessDataTests.csproj", "{F3E5D8B4-974B-4DA3-9760-1618607B8249}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessDataTests", "ProcessDataTests\ProcessDataTests.csproj", "{F3E5D8B4-974B-4DA3-9760-1618607B8249}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
